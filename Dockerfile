@@ -11,7 +11,5 @@ RUN cd ${SPARK_HOME}/jars/ &&\
 COPY conf/ ${SPARK_HOME}/conf/
 COPY dist/ /app
 WORKDIR /app
-RUN pip install pip setuptools --upgrade
-RUN pip install -r requirements.txt
 
 CMD ["/bin/bash"]
