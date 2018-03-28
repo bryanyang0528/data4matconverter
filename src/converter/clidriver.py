@@ -107,4 +107,5 @@ class CLIDriver(object):
         else:
             converter = Converter(src_format=src_format, src_path=src_path)
         converter.df.show()
+        converter.spark.stop()
         return True
