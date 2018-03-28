@@ -100,7 +100,7 @@ class CLIDriver(object):
         logger.info(kwargs)
         src_path = kwargs.pop('src_path')
         src_format = kwargs.pop('src_format')
-        src_properties = kwargs.pop('src_properties')
+        src_properties = kwargs.pop('src_properties', None)
         converter = Converter(src_format=src_format, src_path=src_path, **src_properties)
         converter.df.show()
         return True
