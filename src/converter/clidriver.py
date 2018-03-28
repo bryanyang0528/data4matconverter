@@ -96,11 +96,15 @@ class CLIDriver(object):
             inputs[k] = v
         return inputs
 
-    def run(self, **kwargs):
+    @staticmethod
+    def run(**kwargs):
         logger.info(kwargs)
         src_path = kwargs.pop('src_path')
         src_format = kwargs.pop('src_format')
         src_properties = kwargs.pop('src_properties', None)
-        converter = Converter(src_format=src_format, src_path=src_path, **src_properties)
+        if src_properties:
+            converter = Converter(src_format=src_format, src_path=src_path, **src_properties)
+        else:
+            converter = Converter(src_format=src_format, src_path=src_path)
         converter.df.show()
         return True
