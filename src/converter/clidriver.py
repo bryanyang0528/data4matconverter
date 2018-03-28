@@ -102,10 +102,21 @@ class CLIDriver(object):
         src_path = kwargs.pop('src_path')
         src_format = kwargs.pop('src_format')
         src_properties = kwargs.pop('src_properties', None)
+        dest_path = kwargs.pop('dest_path')
+        dest_format = kwargs.pop('dest_format')
+        dest_properties = kwargs.pop('dest_properties', None)
+
         if src_properties:
             converter = Converter(src_format=src_format, src_path=src_path, **src_properties)
         else:
             converter = Converter(src_format=src_format, src_path=src_path)
+
         converter.df.show()
+
+        if dest_properties:
+            converter.write(format=dest_format, path=dest_path, **dest_properties)
+        else:
+            converter.write(format=dest_format, path=dest_path)
+
         converter.spark.stop()
         return True
